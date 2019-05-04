@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 
-export default class Recuparar extends Component {
+export default class Recuperar extends Component {
     render() {
         return (
             <View>

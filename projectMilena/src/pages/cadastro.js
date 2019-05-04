@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
 import {
     Text, TextInput, TouchableOpacity,
-    StyleSheet, View, ImageBackground, Image, Button
+    StyleSheet, View, ImageBackground, Image, Button, Picker
 } from 'react-native';
 
-import Axios from 'axios';
+import api from '../services/api'
 
 export default class Cadastro extends Component {
 
     state = {
-        docs: []
+        nomeA: "",
+        eemail: "",
+        senha: "",
+        sexo: ""
     }
-
-    klikPost(){
-        var url = 'http://192.168.62.40:3001/api';
-        Axios.post(url, {
-          nomeA: this.state.input1,
-          eemail: this.state.input2,
-          senha: this.state.input3,
-          sexo: this.state.input4
-        })
-      };
-    
 
     render() {
         return (
@@ -30,51 +22,64 @@ export default class Cadastro extends Component {
 
                     <View style={styles.fundo} >
                         <Image source={require('../images/logo.png')}
-                            style={styles.logo}></Image>
+                            style={styles.logo} />
 
 
                         <TextInput style={styles.input}
                             underlineColorAndroid='transparent'
                             placeholder='Nome completo'
-                            onChangeText={(text) => this.setState({ input: text })}
-                            
-                        ></TextInput>
-
+                            onChangeText={(nomeA) => this.setState({ nomeA })}
+                            value={this.state.nomeA}
+                        />
 
                         <TextInput style={styles.input}
                             underlineColorAndroid='transparent'
                             placeholder='E-mail'
-                            onChangeText={(text) => this.setState({ input2: text })}
-                            value={this.state.input2}
-                        ></TextInput>
+                            onChangeText={(eemail) => this.setState({ eemail })}
+                            value={this.state.eemail}
+                        />
 
                         <TextInput secureTextEntry={true}
                             style={styles.input}
                             underlineColorAndroid='transparent'
                             placeholder='Senha'
-                            onChangeText={(text) => this.setState({ input3: text })}
-                            value={this.state.input3} ></TextInput>
+                            onChangeText={(senha) => this.setState({ senha })}
+                            value={this.state.senha}
+                        />
 
-                        <TextInput style={styles.input}
+                        <TextInput
+                            style={styles.input}
                             underlineColorAndroid='transparent'
                             placeholder='Sexo'
-                            onChangeText={(text) => this.setState({ input4: text })}
-                            value={this.state.input4} ></TextInput>
+                            value={this.state.sexo}
+                            onChangeText={(text) => this.setState({ sexo: text })}
+                        />
 
+                        <TouchableOpacity
+                            style={styles.botao} >
+                            <Button onPress={() => {
+                                api.post('/aluno', {
+                                    nomeA: this.state.nomeA,
+                                    eemail: this.state.eemail,
+                                    senha: this.state.senha,
+                                    sexo: this.state.sexo
+                                })
+                                alert('Cadastrado')
+
+                            }}
+                                title="Cadastrar"
+                                color='#ADD8E6' />
+                            
+                        </TouchableOpacity>
 
                         <TouchableOpacity style={styles.botao}>
                             <Button
-                                onPress={( ) => {
-                                    this.klikPost.bind(this)
-                                }} 
-                                   // this.props.navigation.navigate('Confirma')
-                                   
-                                
-                                title="Cadastrar"
+                                onPress={() => {
+                                    this.props.navigation.navigate('Confirma')
+                                }}
+                                title="Continuar"
                                 color='#ADD8E6' />
                         </TouchableOpacity>
-
-
                     </View>
                 </ImageBackground>
             </View>
@@ -113,10 +118,18 @@ const styles = StyleSheet.create({
     },
     fundo: {
         backgroundColor: '#BFEFFF',
-        height: 500,
+        height: 520,
         marginTop: 90,
         borderRadius: 30,
-        marginLeft: 10,
+        margin: 10,
         marginRight: 10
+    },
+    buttonCreateText: {
+        paddingVertical: 10,
+        width: 150,
+        height: 40,
+        alignItems: 'center',
+        marginLeft: 90,
+        marginTop: 15
     },
 })

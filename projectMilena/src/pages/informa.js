@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 
-export default class Confirma extends Component {
+export default class Informa extends Component {
     render() {
         return (
             <View>

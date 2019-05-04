@@ -18,7 +18,7 @@ export default class Listagem extends Component {
         this.loadProducts();
     }
 
-    loadProducts = async (page=1) => {
+    loadProducts = async (page = 1) => {
         const response = await api.get(`/alunos?page=${page}`);
 
         const { docs, ...productInfo } = response.data;
@@ -30,7 +30,7 @@ export default class Listagem extends Component {
     loadMore = () => {
         const { page, productInfo } = this.state;
 
-        if(page == productInfo.pages) return;
+        if (page == productInfo.pages) return;
         const pageNumber = page + 1
 
         this.loadProducts(pageNumber)
@@ -45,6 +45,7 @@ export default class Listagem extends Component {
         </View>
     )
 
+
     render() {
         return (
             <View>
@@ -55,32 +56,27 @@ export default class Listagem extends Component {
                         <Image source={require('../images/logo.png')}
                             style={styles.logo}></Image>
 
-                        <View>
+                        <FlatList
+                            contentContainerStyle={styles.list}
+                            data={this.state.docs}
+                            keyExtractor={item => item._id}
+                            renderItem={this.renderItem}
+                            onEndReached={this.loadMore}
+                            onEndReachedThreshold={0.1}
+                        />
 
-                            <FlatList 
-                                contentContainerStyle={styles.list}
-                                data={this.state.docs}
-                                keyExtractor={item => item._id}
-                                renderItem={this.renderItem}
-                                onEndReached={this.loadMore}
-                                onEndReachedThreshold={0.1}
-                            />
-
-                        </View>
+                        <Text style={styles.page} >Para remover usuários entre <Text onPress={() => {
+                            this.props.navigation.navigate('Remover')
+                        }} > .aqui. </Text> </Text>
 
                         <TouchableOpacity style={styles.botao}>
                             <Button
                                 onPress={() => {
-                                    this.props.navigation.navigate('Confirma')
+                                    this.props.navigation.navigate('Cozinha')
                                 }}
-                                title="Voltar"
+                                title="Continuar"
                                 color='#ADD8E6' />
                         </TouchableOpacity>
-
-                        <Text style={styles.listar} >Para remover usuários entre <Text onPress={() => {
-                            this.props.navigation.navigate('Remover')
-                        }} > .aqui. </Text> </Text>
-
 
                     </View>
                 </ImageBackground>
@@ -99,40 +95,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 15
     },
+    fundo: {
+        backgroundColor: '#BFEFFF',
+        height: 670,
+        marginTop: 20,
+        borderRadius: 20,
+        margin: 10    },
     botao: {
         paddingVertical: 10,
         width: 150,
         height: 40,
         alignItems: 'center',
-        marginLeft: 90,
-        marginTop: 115
-    },
-    fundo: {
-        backgroundColor: '#BFEFFF',
-        height: 600,
-        marginTop: 20,
-        borderRadius: 20,
-        marginLeft: 10,
-        marginRight: 10,
-        flex: 1
-    },
-    productButton: {
-        height: 40,
-        borderRadius: 5,
-        borderWidth: 2,
-        borderColor: '#ADD8E6',
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10
+        marginLeft: 90
     },
     productButtonText: {
         fontSize: 14,
         color: '#ADD8E6',
         fontWeight: 'bold'
     },
-    productContainer:{
-        borderWidth: 1,
+    productContainer: {
+        borderWidth: 0.5,
         borderColor: '#ADD8E6',
         borderRadius: 5,
         padding: 20,
@@ -143,13 +125,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#333'
     },
-    productName:{
-      fontSize: 14,
-      color: '#4682B4',
-      marginTop: 5,
-      lineHeight: 24
+    productName: {
+        fontSize: 14,
+        color: '#4682B4',
+        marginTop: 5,
+        lineHeight: 24
     },
     list: {
         padding: 20
-    }
+    },
+    page: {
+        color: '#104E8B',
+        fontSize: 15,
+        textAlign: 'center'
+    },
 })

@@ -3,7 +3,7 @@ import {
     StyleSheet, View, Image, Text
 } from 'react-native';
 
-export default class Confirma extends Component {
+export default class Cozinha extends Component {
     render() {
         return (
             <View>

@@ -7,10 +7,10 @@ import {
 import api from '../services/api'
 
 
-export default class Recuparar extends Component {
+export default class Remover extends Component {
 
-    removerUsuario(){
-
+    state = {
+        _id: ""
     }
 
     render() {
@@ -25,20 +25,26 @@ export default class Recuparar extends Component {
                         <Text style={styles.remover}>Remoção de usuários</Text>
 
                         <TextInput 
-                        style={styles.mail} 
-                        underlineColorAndroid='transparent' 
-                        placeholder='insira o id do usuario'
-                        ></TextInput>
-
+                            style={styles.mail} 
+                            underlineColorAndroid='transparent' 
+                            placeholder='insira o id do usuario'
+                            onChangeText={(_id) => this.setState({ _id })}
+                            value={this.state._id}
+                        />
+                        
                         <TouchableOpacity style={styles.botao}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Remoção concluida')
+                                   api.delete(`/aluno/${ this.state._id}`, {
+                                       _id: this.state._id
+                                   })
+                                    alert('Usuário removido')
+    
                                 }}
-                                title="Remover"
-                                color='#ADD8E6'
-                                 >
-                                 </Button>
+                                    title="Remover"
+                                    color='#ADD8E6' 
+                                    />
+                                 
                         </TouchableOpacity>
 
                         
