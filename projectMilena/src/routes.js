@@ -6,7 +6,6 @@ import Cozinha from './pages/cozinha'
 import Informa from './pages/informa'
 import Recuperar from './pages/recuperar'
 import Listar from './pages/listagem'
-import Remover from './pages/remover'
 
 export default createStackNavigator({
     Main,
@@ -15,8 +14,7 @@ export default createStackNavigator({
     Cozinha,
     Informa,
     Recuperar,
-    Listar,
-    Remover
+    Listar
 }, {
     //remoção do header
     headerMode: 'none',

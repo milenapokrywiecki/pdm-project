@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Text, TouchableOpacity,
+    Text, TouchableOpacity, TextInput,
     StyleSheet, View, ImageBackground, Image, Button, FlatList
 } from 'react-native';
 
@@ -65,9 +65,30 @@ export default class Listagem extends Component {
                             onEndReachedThreshold={0.1}
                         />
 
-                        <Text style={styles.page} >Para remover usuários entre <Text onPress={() => {
-                            this.props.navigation.navigate('Remover')
-                        }} > .aqui. </Text> </Text>
+                        <Text style={styles.page} >Para remover usuários insira o id</Text>
+
+                        <TextInput
+                            style={styles.id}
+                            underlineColorAndroid='transparent'
+                            placeholder='id do usuario'
+                            onChangeText={(_id) => this.setState({ _id })}
+                            value={this.state._id}
+                        />
+
+                        <TouchableOpacity style={styles.botao}>
+                            <Button
+                                onPress={() => {
+                                    api.delete(`/aluno/${this.state._id}`, {
+                                        _id: this.state._id
+                                    })
+                                    alert('Usuário removido')
+
+                                }}
+                                title="Remover"
+                                color='#ADD8E6'
+                            />
+
+                        </TouchableOpacity>
 
                         <TouchableOpacity style={styles.botao}>
                             <Button
@@ -97,10 +118,21 @@ const styles = StyleSheet.create({
     },
     fundo: {
         backgroundColor: '#BFEFFF',
-        height: 670,
-        marginTop: 20,
+        height: 590,
+        marginTop: 10,
         borderRadius: 20,
-        margin: 10    },
+        margin: 10
+    },
+    id: {
+        width: 280,
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 0,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        marginTop: 20,
+        marginLeft: 30
+    },
     botao: {
         paddingVertical: 10,
         width: 150,

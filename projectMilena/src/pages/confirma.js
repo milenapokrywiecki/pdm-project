@@ -20,9 +20,6 @@ export default class Confirma extends Component {
                                     this.props.navigation.navigate('Listar')
                                 }} > .aqui. </Text> </Text>
 
-                        <Text style={styles.listar} >Para remover usuários entre <Text  onPress={() => {
-                                    this.props.navigation.navigate('Remover')
-                                }} > .aqui. </Text> </Text>
 
                         <TouchableOpacity style={styles.botao}>
                             <Button
@@ -74,10 +71,9 @@ const styles = StyleSheet.create({
     },
     fundo: {
         backgroundColor: '#BFEFFF',
-        height: 500,
-        marginTop: 90,
+        height: 450,
+        marginTop: 60,
         borderRadius: 30,
-        marginLeft: 10,
-        marginRight: 10
+        margin: 10
     },
 })

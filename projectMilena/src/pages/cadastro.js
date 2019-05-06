@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     fundo: {
         backgroundColor: '#BFEFFF',
         height: 520,
-        marginTop: 90,
+        marginTop: 50,
         borderRadius: 30,
         margin: 10,
         marginRight: 10
