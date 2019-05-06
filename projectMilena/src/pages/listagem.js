@@ -82,7 +82,7 @@ export default class Listagem extends Component {
                                         _id: this.state._id
                                     })
                                     alert('Usuário removido')
-
+                                   
                                 }}
                                 title="Remover"
                                 color='#ADD8E6'

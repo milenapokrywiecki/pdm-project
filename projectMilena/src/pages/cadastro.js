@@ -65,7 +65,7 @@ export default class Cadastro extends Component {
                                     sexo: this.state.sexo
                                 })
                                 alert('Cadastrado')
-
+                               
                             }}
                                 title="Cadastrar"
                                 color='#ADD8E6' />
