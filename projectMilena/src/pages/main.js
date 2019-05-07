@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { createStackNavigator } from 'react-navigation'
 import {
     Text, TextInput, TouchableOpacity,
     StyleSheet, View, ImageBackground, Image, Alert, Button, Label
 } from 'react-native';
 
-const remote = 'https://img.elo7.com.br/product/zoom/21B2825/papel-parede-ursinhos-fundo-azul-bebe-vinil-papel-de-parede-com-textura.jpg'
 
 export default class Main extends Component {
     render() {
@@ -60,7 +58,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignItems: 'center',
-        marginTop: 25
+        marginTop: 25,
+        margin: 20
     },
     input: {
         width: 280,
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'white',
         marginTop: 30,
-        margin: 30,
+        margin: 50,
         marginBottom: 10
     },
     botao: {
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
         width: 150,
         height: 40,
         alignItems: 'center',
-        marginLeft: 90
+        marginLeft: 110
     },
     esqueceuSenha: {
         color: '#104E8B',
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
     },
     fundo: {
         backgroundColor: '#BFEFFF',
-        marginTop: 60,
+        marginTop: 90,
         borderRadius: 30,
         marginLeft: 10,
         marginRight: 10

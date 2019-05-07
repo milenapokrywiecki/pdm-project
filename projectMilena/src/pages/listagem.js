@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     Text, TouchableOpacity, TextInput,
-    StyleSheet, View, ImageBackground, Image, Button, FlatList
+    StyleSheet, View, ImageBackground, Image, Button, FlatList, Alert
 } from 'react-native';
 
 import api from '../services/api'
@@ -42,6 +42,40 @@ export default class Listagem extends Component {
             <Text style={styles.productName}>{item.nomeA}</Text>
             <Text style={styles.productName}>{item.eemail}</Text>
             <Text style={styles.productName}>{item.sexo}</Text>
+
+            <TouchableOpacity onPress= { () => {
+                    Alert.alert(
+                        'Deletar',
+                        'Deseja realmente deletar?',
+                        [
+                            {
+                                text: 'Não', onPress: () => 
+                                    console.log('Cancel'),
+                                    style: 'cancel'
+                                    
+                                },
+                                {
+                                    text: 'Sim', onPress: () => {
+                                        api.delete(`/aluno/${item._id}`)
+                                        .then(res => {
+                                            this.loadProducts();
+                                            Alert.alert(
+                                                'Pronto',
+                                                'Item deletado com sucesso'
+                                            )
+                                        })
+                                        .catch(err => {
+                                            'Erro',
+                                            'Não foi pssível deletar'
+                                        })
+                                    }
+                                }
+                            
+                        ]
+                    )
+                }} style={styles.botao}>
+                    <Text style={styles.productButtonText}>Deletar</Text>
+                </TouchableOpacity>
         </View>
     )
 
@@ -56,14 +90,18 @@ export default class Listagem extends Component {
                         <Image source={require('../images/logo.png')}
                             style={styles.logo}></Image>
 
-                        <FlatList
-                            contentContainerStyle={styles.list}
-                            data={this.state.docs}
-                            keyExtractor={item => item._id}
-                            renderItem={this.renderItem}
-                            onEndReached={this.loadMore}
-                            onEndReachedThreshold={0.1}
-                        />
+                        <View>
+
+                            <FlatList
+                                contentContainerStyle={styles.list}
+                                data={this.state.docs}
+                                keyExtractor={item => item._id}
+                                renderItem={this.renderItem}
+                                onEndReached={this.loadMore}
+                                onEndReachedThreshold={0.1}
+
+                            />
+                        </View>
 
                         <Text style={styles.page} >Para remover usuários insira o id</Text>
 
@@ -73,31 +111,8 @@ export default class Listagem extends Component {
                             placeholder='id do usuario'
                             onChangeText={(_id) => this.setState({ _id })}
                             value={this.state._id}
+
                         />
-
-                        <TouchableOpacity style={styles.botao}>
-                            <Button
-                                onPress={() => {
-                                    api.delete(`/aluno/${this.state._id}`, {
-                                        _id: this.state._id
-                                    })
-                                    alert('Usuário removido')
-                                   
-                                }}
-                                title="Remover"
-                                color='#ADD8E6'
-                            />
-
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.botao}>
-                            <Button
-                                onPress={() => {
-                                    this.props.navigation.navigate('Cozinha')
-                                }}
-                                title="Continuar"
-                                color='#ADD8E6' />
-                        </TouchableOpacity>
 
                     </View>
                 </ImageBackground>
@@ -114,12 +129,13 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignItems: 'center',
-        marginTop: 15
+        marginTop: 5,
+        margin: 20
     },
     fundo: {
         backgroundColor: '#BFEFFF',
-        height: 590,
-        marginTop: 10,
+        height: 620,
+        marginTop: 30,
         borderRadius: 20,
         margin: 10
     },
@@ -136,13 +152,16 @@ const styles = StyleSheet.create({
     botao: {
         paddingVertical: 10,
         width: 150,
-        height: 40,
+        height: 30,
         alignItems: 'center',
-        marginLeft: 90
+        marginLeft: 80,
+        padding: 20,
+        backgroundColor: "#ADD8E6",
+   
     },
     productButtonText: {
         fontSize: 14,
-        color: '#ADD8E6',
+        color: 'white',
         fontWeight: 'bold'
     },
     productContainer: {
@@ -160,7 +179,7 @@ const styles = StyleSheet.create({
     productName: {
         fontSize: 14,
         color: '#4682B4',
-        marginTop: 5,
+        marginTop: 1,
         lineHeight: 24
     },
     list: {

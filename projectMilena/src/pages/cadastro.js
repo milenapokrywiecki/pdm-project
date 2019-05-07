@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     Text, TextInput, TouchableOpacity,
-    StyleSheet, View, ImageBackground, Image, Button, Picker
+    StyleSheet, View, ImageBackground, Image, Button
 } from 'react-native';
 
 import api from '../services/api'
@@ -65,7 +65,7 @@ export default class Cadastro extends Component {
                                     sexo: this.state.sexo
                                 })
                                 alert('Cadastrado')
-                               
+                                this.props.navigation.navigate('Confirma')
                             }}
                                 title="Cadastrar"
                                 color='#ADD8E6' />
@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignItems: 'center',
-        marginTop: 25
+        marginTop: 15,
+        margin: 20
     },
     input: {
         width: 280,
@@ -104,8 +105,8 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderRadius: 10,
         backgroundColor: 'white',
-        marginTop: 25,
-        margin: 30,
+        marginTop: 15,
+        margin: 50,
         marginBottom: 10
     },
     botao: {
@@ -113,13 +114,13 @@ const styles = StyleSheet.create({
         width: 150,
         height: 40,
         alignItems: 'center',
-        marginLeft: 90,
+        marginLeft: 100,
         marginTop: 15
     },
     fundo: {
         backgroundColor: '#BFEFFF',
         height: 520,
-        marginTop: 50,
+        marginTop: 70,
         borderRadius: 30,
         margin: 10,
         marginRight: 10

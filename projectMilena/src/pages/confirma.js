@@ -47,14 +47,15 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignItems: 'center',
-        marginTop: 25
+        marginTop: 25,
+        marginHorizontal: 20
     },
     botao: {
         paddingVertical: 10,
         width: 150,
         height: 40,
         alignItems: 'center',
-        marginLeft: 90,
+        marginLeft: 110,
         marginTop: 50
     },
     confirma: {
