@@ -8,7 +8,6 @@ export default class Cozinha extends Component {
         return (
             <View>
                 <View style={styles.fundo} >
-
                     <View style={styles.row} >
 
                         <Image style={styles.remedio}
@@ -20,7 +19,7 @@ export default class Cozinha extends Component {
 
                     <Text style={styles.nome}
                         onPress={() => {
-                            this.props.navigation.navigate('Banheiro')
+                            this.props.navigation.navigate('Relatorio')
                         }}>Josué</Text>
 
                     <Text onPress={() => {
@@ -53,7 +52,7 @@ export default class Cozinha extends Component {
 
 const styles = StyleSheet.create({
     fundo: {
-        backgroundColor: '#EEDC82',
+        backgroundColor: '#DDA0DD',
         width: '100%',
         height: '100%'
     },
@@ -66,17 +65,19 @@ const styles = StyleSheet.create({
     nome: {
         textAlign: 'center',
         marginTop: 50,
-        fontSize: 20
+        fontSize: 20,
+        color: 'white'
     },
     infor: {
         textAlign: 'center',
         marginTop: 10,
-        fontSize: 20
+        fontSize: 20,
+        color: 'white'
     },
     info: {
         left: 300,
         width: 30,
-        height: 30
+        height: 30,
     },
     icon: {
         width: 80,

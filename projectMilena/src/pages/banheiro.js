@@ -9,23 +9,14 @@ export default class Cozinha extends Component {
             <View>
                 <View style={styles.fundo} >
 
-                    <View style={styles.row} >
-
-                        <Image style={styles.remedio}
-                            source={require('../images/remedio.png')} ></Image>
-
-                        <Image style={styles.info}
-                            source={require('../images/info.png')} ></Image>
-                    </View>
-
                     <Text style={styles.nome}
                         onPress={() => {
-                            this.props.navigation.navigate('Banheiro')
+                            this.props.navigation.navigate('Quarto')
                         }}>Josué</Text>
 
-                    <Text onPress={() => {
-                        this.props.navigation.navigate('Informa')
-                    }} style={styles.infor} >Informa</Text>
+
+                    <Image style={styles.chuveiro}
+                        source={require('../images/chuveiro.png')} ></Image>
 
                     <Image style={styles.imagem}
                         source={require('../images/bebe.png')} ></Image>
@@ -53,42 +44,40 @@ export default class Cozinha extends Component {
 
 const styles = StyleSheet.create({
     fundo: {
-        backgroundColor: '#EEDC82',
+        backgroundColor: '#4682B4',
         width: '100%',
         height: '100%'
     },
     imagem: {
         width: 210,
-        height: 250,
+        height: 270,
         marginLeft: 75,
-        marginTop: 120
+        marginTop: 20
     },
     nome: {
         textAlign: 'center',
-        marginTop: 50,
-        fontSize: 20
+        marginTop: 20,
+        fontSize: 20,
+        color: 'white'
     },
     infor: {
         textAlign: 'center',
         marginTop: 10,
-        fontSize: 20
-    },
-    info: {
-        left: 300,
-        width: 30,
-        height: 30
+        fontSize: 20,
+        color: 'white'
     },
     icon: {
         width: 80,
         height: 100,
         margin: 5,
-        marginTop: 70
+        marginTop: 75
     },
     row: {
         flexDirection: 'row'
     },
-    remedio: {
-        width: 30,
-        height: 30
+    chuveiro: {
+        marginTop: 30,
+        width: 150,
+        height: 150
     }
 })

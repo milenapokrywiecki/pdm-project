@@ -22,6 +22,10 @@ const AlunoSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    relatorio: {
+        type: String,
+        required: true
     }
 })
 

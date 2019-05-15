@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {
     Text, TextInput, TouchableOpacity,
-    StyleSheet, View, ImageBackground, Image, Alert, Button, Label
+    StyleSheet, View, ImageBackground, Image, Button, Platform
 } from 'react-native';
+
 
 
 export default class Main extends Component {
@@ -58,8 +59,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignItems: 'center',
-        marginTop: 25,
-        margin: 20
+        marginTop: 25
     },
     input: {
         width: 280,
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderWidth: 0,
         borderRadius: 10,
-        backgroundColor: 'white',
+        backgroundColor: '#F0F8FF',
         marginTop: 30,
-        margin: 50,
+        margin: 30,
         marginBottom: 10
     },
     botao: {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         width: 150,
         height: 40,
         alignItems: 'center',
-        marginLeft: 110
+        marginLeft: 90
     },
     esqueceuSenha: {
         color: '#104E8B',
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     fundo: {
-        backgroundColor: '#BFEFFF',
-        marginTop: 90,
+        backgroundColor: '#87CEEB',
+        marginTop: 50,
         borderRadius: 30,
         marginLeft: 10,
         marginRight: 10

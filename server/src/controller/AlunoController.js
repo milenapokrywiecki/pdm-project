@@ -22,12 +22,6 @@ module.exports = {
         return res.json(aluno);
     },
 
-    //async update(req, res) {
-        //const alunor = await Aluno.finByIdAndUpdate(req.params.id, req.body, { new: true });
-
-        //return res.json(aluno);
-    //},
-
     async destroy(req, res) { //remover
         await Aluno.findByIdAndRemove(req.params.id);
 

@@ -38,7 +38,6 @@ export default class Listagem extends Component {
 
     renderItem = ({ item }) => (
         <View style={styles.productContainer} >
-            <Text style={styles.productId}>{item._id}</Text>
             <Text style={styles.productName}>{item.nomeA}</Text>
             <Text style={styles.productName}>{item.eemail}</Text>
             <Text style={styles.productName}>{item.sexo}</Text>
