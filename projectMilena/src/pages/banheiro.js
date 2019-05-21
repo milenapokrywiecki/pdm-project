@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet, View, Image, Text, ScrollView
+    StyleSheet, View, Image, Text, TouchableOpacity
 } from 'react-native';
 
 export default class Cozinha extends Component {
@@ -9,30 +9,55 @@ export default class Cozinha extends Component {
             <View>
                 <View style={styles.fundo} >
 
-                    <Text style={styles.nome}
-                        onPress={() => {
-                            this.props.navigation.navigate('Quarto')
-                        }}>Josué</Text>
+                    <Text style={styles.nome}>Josué</Text>
 
 
                     <Image style={styles.chuveiro}
                         source={require('../images/chuveiro.png')} ></Image>
 
+
                     <Image style={styles.imagem}
                         source={require('../images/bebe.png')} ></Image>
 
+
                     <View style={styles.row} >
-                        <Image
-                            style={styles.icon}
-                            source={require('../images/mamadeira.png')}></Image>
 
-                        <Image
-                            style={styles.icon}
-                            source={require('../images/agua.png')}
-                        ></Image>
+                        <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('Cozinha')
+                            }}>
+                            <Image
+                                style={styles.icon}
+                                source={require('../images/mamadeira.png')}
+                            ></Image>
+                        </TouchableOpacity>
 
-                        <Image style={styles.icon} source={require('../images/lampada.png')} ></Image>
-                        <Image style={styles.icon} source={require('../images/clipboard.png')} ></Image>
+                        <TouchableOpacity>
+                            <Image
+                                style={styles.icon}
+                                source={require('../images/agua.png')}
+                            ></Image>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('Quarto')
+                            }}>
+                            <Image
+                                style={styles.icon}
+                                source={require('../images/lampada.png')}
+                            ></Image>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('Relatorio')
+                            }}>
+                            <Image
+                                style={styles.icon}
+                                source={require('../images/clipboard.png')}
+                            ></Image>
+                        </TouchableOpacity>
                     </View>
                 </View>
 
@@ -57,12 +82,6 @@ const styles = StyleSheet.create({
     nome: {
         textAlign: 'center',
         marginTop: 20,
-        fontSize: 20,
-        color: 'white'
-    },
-    infor: {
-        textAlign: 'center',
-        marginTop: 10,
         fontSize: 20,
         color: 'white'
     },

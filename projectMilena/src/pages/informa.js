@@ -27,7 +27,7 @@ export default class Informa extends Component {
                         <Text style={styles.tipo} >Tipo 4: </Text>
                         <Text style={styles.texto} >Quando o bebê chora emitindo o som "éar", é para emitir dor.</Text>
 
-
+                        <View style={styles.row} >
                         <TouchableOpacity style={styles.botao}>
                             <Button
                                 onPress={() => {
@@ -37,8 +37,15 @@ export default class Informa extends Component {
                                 color='#ADD8E6' />
                         </TouchableOpacity>
 
-
-
+                        <TouchableOpacity style={styles.botao}>
+                            <Button
+                                onPress={() => {
+                                    this.props.navigation.navigate('Prevencao')
+                                }}
+                                title="Prevenção"
+                                color='#ADD8E6' />
+                        </TouchableOpacity>
+                        </View>
                     </View>
                 </ImageBackground>
             </View>
@@ -61,27 +68,30 @@ const styles = StyleSheet.create({
         width: 150,
         height: 40,
         alignItems: 'center',
-        marginLeft: 90,
+        margin: 8,
         marginTop: 20
     },
     texto: {
         color: '#104E8B',
         fontSize: 15,
         marginTop: 10,
-        marginLeft: 5
+        marginLeft: 10
     },
     tipo: {
         color: '#104E8B',
         fontSize: 20,
         marginTop: 20,
-        marginLeft: 5
+        marginLeft: 10
     },
     fundo: {
-        backgroundColor: '#BFEFFF',
-        height: 550,
-        marginTop: 90,
+        backgroundColor: '#87CEEB',
+        height: 570,
+        marginTop: 70,
         borderRadius: 30,
         marginLeft: 10,
         marginRight: 10
     },
+    row: {
+        flexDirection: 'row'
+    }
 })

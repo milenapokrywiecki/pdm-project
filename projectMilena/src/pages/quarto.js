@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet, View, Image, Text, ScrollView
+    StyleSheet, View, Image, Text, TouchableOpacity
 } from 'react-native';
 
 export default class Cozinha extends Component {
@@ -10,37 +10,54 @@ export default class Cozinha extends Component {
                 <View style={styles.fundo} >
                     <View style={styles.row} >
 
-                        <Image style={styles.remedio}
-                            source={require('../images/remedio.png')} ></Image>
+                     <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('Informa')
+                            }}>
+                            <Image
+                                style={styles.info}
+                                source={require('../images/info.png')}
+                            ></Image>
+                        </TouchableOpacity>
 
-                        <Image style={styles.info}
-                            source={require('../images/info.png')} ></Image>
                     </View>
 
-                    <Text style={styles.nome}
-                        onPress={() => {
-                            this.props.navigation.navigate('Relatorio')
-                        }}>Josué</Text>
-
-                    <Text onPress={() => {
-                        this.props.navigation.navigate('Informa')
-                    }} style={styles.infor} >Informa</Text>
+                    <Text style={styles.nome}>Josué</Text>
 
                     <Image style={styles.imagem}
                         source={require('../images/bebe.png')} ></Image>
 
                     <View style={styles.row} >
-                        <Image
-                            style={styles.icon}
-                            source={require('../images/mamadeira.png')}></Image>
-
-                        <Image
-                            style={styles.icon}
-                            source={require('../images/agua.png')}
-                        ></Image>
+                    <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('Cozinha')
+                            }}>
+                            <Image
+                                style={styles.icon}
+                                source={require('../images/mamadeira.png')}
+                            ></Image>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('Banheiro')
+                            }}>
+                            <Image
+                                style={styles.icon}
+                                source={require('../images/agua.png')}
+                            ></Image>
+                        </TouchableOpacity>
 
                         <Image style={styles.icon} source={require('../images/lampada.png')} ></Image>
-                        <Image style={styles.icon} source={require('../images/clipboard.png')} ></Image>
+
+                        <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('Relatorio')
+                            }}>
+                            <Image
+                                style={styles.icon}
+                                source={require('../images/clipboard.png')}
+                            ></Image>
+                        </TouchableOpacity>
                     </View>
                 </View>
 
@@ -68,14 +85,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white'
     },
-    infor: {
-        textAlign: 'center',
-        marginTop: 10,
-        fontSize: 20,
-        color: 'white'
-    },
     info: {
-        left: 300,
         width: 30,
         height: 30,
     },
@@ -83,13 +93,9 @@ const styles = StyleSheet.create({
         width: 80,
         height: 100,
         margin: 5,
-        marginTop: 70
+        marginTop: 110
     },
     row: {
         flexDirection: 'row'
-    },
-    remedio: {
-        width: 30,
-        height: 30
     }
 })

@@ -3,14 +3,15 @@ import {
     Text, TextInput, TouchableOpacity,
     StyleSheet, View, ImageBackground, Image, Button
 } from 'react-native';
+
 import api from '../services/api'
 
-
 export default class Main extends Component {
+
     state = {
-        relatorio: "",
+        relatorio: " ",
     }
-    
+
     render() {
         return (
             <View>
@@ -20,7 +21,7 @@ export default class Main extends Component {
                         <Image source={require('../images/logo.png')}
                             style={styles.logo}></Image>
 
-                        <Text style={styles.text} >Preencha aqui seu relatório diário sobre os cuidados com o seu bebe, 
+                        <Text style={styles.text} >Preencha aqui seu relatório diário sobre os cuidados com o seu bebe,
                             as dificuldades encontradas para cuidar e a experiencia adquirida por voce.
                         </Text>
 
@@ -30,30 +31,29 @@ export default class Main extends Component {
                             onChangeText={(relatorio) => this.setState({ relatorio })}
                             value={this.state.relatorio} ></TextInput>
 
-                        <TouchableOpacity style={styles.botao}>
-                            <Button
-                                onPress={() => {
-                                    api.post('/aluno', {
-                                        relatorio: this.state.relatorio,
-                                    
-                                    })
-                                    alert('Relatorio Enviado')
-                                    this.props.navigation.navigate('Cozinha')
-                                }}
-                                title="Enviar"
-                                color='#ADD8E6' />
-                        </TouchableOpacity>
+                        <View style={styles.row} >
+                            <TouchableOpacity style={styles.botao}>
+                                <Button
+                                    onPress={() => {
+                                        api.post('/relatorio', {
+                                            relatorio: this.state.relatorio
+                                        })
+                                        alert('Relatorio Enviado')
+                                    }}
+                                    title="Enviar"
+                                    color='#ADD8E6' />
+                            </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.botao}>
-                            <Button
-                                onPress={() => {
-                                    this.props.navigation.navigate('Cozinha')
-                                }}
-                                title="Voltar"
-                                color='#ADD8E6' />
-                        </TouchableOpacity>
+                            <TouchableOpacity style={styles.botao}>
+                                <Button
+                                    onPress={() => {
+                                        this.props.navigation.navigate('Cozinha')
+                                    }}
+                                    title="Voltar"
+                                    color='#ADD8E6' />
+                            </TouchableOpacity>
 
-
+                        </View>
 
 
                     </View>
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
         width: 150,
         height: 40,
         alignItems: 'center',
-        marginLeft: 90,
-        marginBottom: 10
+        marginLeft: 10,
+        marginTop: 30
     },
     fundo: {
         backgroundColor: '#87CEEB',
@@ -98,13 +98,15 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         marginLeft: 10,
         marginRight: 10,
-        height: 550
+        height: 520
     },
     text: {
         margin: 10,
         marginTop: 20,
         alignItems: 'flex-end'
-
+    },
+    row: {
+        flexDirection: 'row'
     }
 
 })

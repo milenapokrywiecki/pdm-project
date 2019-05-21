@@ -9,18 +9,21 @@ import Listar from './pages/listagem'
 import Banheiro from './pages/banheiro'
 import Quarto from './pages/quarto'
 import Relatorio from './pages/relatorio'
+import Prevencao from './pages/prevencao'
 
 export default createStackNavigator({
     Main,
     Cadastro,
     Confirma,
     Cozinha,
-    Informa,
     Recuperar,
     Listar,
     Banheiro,
     Quarto,
-    Relatorio
+    Relatorio,
+    Prevencao,
+    Informa
+
 }, {
         headerMode: 'none',
 
