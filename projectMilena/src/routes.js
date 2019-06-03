@@ -10,6 +10,8 @@ import Banheiro from './pages/banheiro'
 import Quarto from './pages/quarto'
 import Relatorio from './pages/relatorio'
 import Prevencao from './pages/prevencao'
+import Teste from './pages/teste'
+
 
 export default createStackNavigator({
     Main,
@@ -22,7 +24,8 @@ export default createStackNavigator({
     Quarto,
     Relatorio,
     Prevencao,
-    Informa
+    Informa,
+    Teste
 
 }, {
         headerMode: 'none',

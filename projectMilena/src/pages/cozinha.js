@@ -1,11 +1,48 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet, View, Image, Text, TouchableOpacity
+    StyleSheet, View, Image, Text, TouchableOpacity, ScrollView, Feature
 } from 'react-native';
+import Sound from 'react-native-sound';
+
+const audioTests = [
+    {
+        isRequire: true,
+        url: require('./choro.mp3'),
+    },
+
+];
+
+function playSound(testInfo, component) {
+    setTestState(testInfo, component, 'pending');
+
+    const callback = (error, sound) => {
+        if (error) {
+            Alert.alert('error', error.message);
+            setTestState(testInfo, component, 'fail');
+            return;
+        }
+        setTestState(testInfo, component, 'playing');
+        // Run optional pre-play callback
+        testInfo.onPrepared && testInfo.onPrepared(sound, component);
+        sound.play(() => {
+            // Success counts as getting to the end
+            setTestState(testInfo, component, 'win');
+            // Release when it's done so we're not using up resources
+            sound.release();
+        });
+    };
+    if (testInfo.isRequire) {
+        const sound = new Sound(testInfo.url, error => callback(error, sound));
+    } else {
+        const sound = new Sound(testInfo.url, testInfo.basePath, error => callback(error, sound));
+    }
+
+}
 
 export default class Cozinha extends Component {
     render() {
         return (
+
             <View>
                 <View style={styles.fundo} >
 
@@ -21,10 +58,11 @@ export default class Cozinha extends Component {
                             ></Image>
                         </TouchableOpacity>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity >
                             <Image
                                 style={styles.remedio}
                                 source={require('../images/remedio.png')}
+
                             ></Image>
                         </TouchableOpacity>
 
@@ -32,8 +70,9 @@ export default class Cozinha extends Component {
                     </View>
 
                     <Text style={styles.nome} onPress={() => {
-                        this.props.navigation.navigate('Prevencao')
-                    }}>Josué</Text>
+                        this.props.navigation.navigate('Teste')
+                    }}
+                    >Josué</Text>
 
                     <Image style={styles.imagem}
                         source={require('../images/bebe.png')} ></Image>
@@ -79,6 +118,7 @@ export default class Cozinha extends Component {
 
                     </View>
                 </View>
+
 
             </View>
         )
